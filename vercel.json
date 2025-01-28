@@ -1,24 +1,26 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "src/index.js",            
-        "use": "@vercel/static"           
-      },
-      {
-        "src": "server.js",               
-        "use": "@vercel/node"             
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",          // Root package.json file to install dependencies
+      "use": "@vercel/static-build",  // Static build for React app
+      "config": {
+        "distDir": "build"            // The build directory where React app will be output
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/public/$1"             
-      },
-      {
-        "src": "/api/(.*)",
-        "dest": "/server.js"             
-      }
-    ]
-  }
-  
+    },
+    {
+      "src": "server.js",             // Serverless function for backend logic (Plaid integration)
+      "use": "@vercel/node"           // Use @vercel/node for serverless backend
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"           // Serve static files from the public directory
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"           // Route API requests to server.js
+    }
+  ]
+}
