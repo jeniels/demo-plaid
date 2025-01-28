@@ -2,15 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",          // Root package.json file to install dependencies
-      "use": "@vercel/static-build",  // Static build for React app
+      "src": "package.json",          
+      "use": "@vercel/static-build",  
       "config": {
-        "distDir": "build"            // The build directory where React app will be output
+        "distDir": "build"           
       }
     },
     {
-      "src": "server.js",             // Serverless function for backend logic (Plaid integration)
-      "use": "@vercel/node"           // Use @vercel/node for serverless backend
+      "src": "server.js",            
+      "use": "@vercel/node"           
     }
   ],
   "routes": [
